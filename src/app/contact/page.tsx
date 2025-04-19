@@ -6,15 +6,26 @@ export default function ContactPage() {
     const [name, setName] = useState('')
     const [message, setMessage] = useState('')
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         if(!name || !message) {
             alert("Enter your name and message")
         }
-        else
-        alert(`Thanks ${name}! Your message "${message} has been recieved"`)
+
+        else{
+        const res = await fetch(`api/contact`, {
+        method: 'POST',
+        body: JSON.stringify({name, message}),
+        headers: {'Content-Type' : 'application/json'}
+    
+    })
+
+    const result = await res.json();
+    console.log(result)
+        alert(`Thanks ${name}! Your message "${message} has been recieved" ${result}`)
         setName('')
         setMessage('')
+        }
     }
     return(
         <div className="max-w-md mx-auto space-y-4c content-center">
