@@ -21,6 +21,7 @@ export default function RootLayout({
         <header className="bg-blue-600 text-white p-4 flex gap-4">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
+          <Link href="/contact">Contact</Link>
         </header>
         <main className="p-6">{children}</main>
         <footer className="bg-gray-200 p-4 text-center text-sm">
